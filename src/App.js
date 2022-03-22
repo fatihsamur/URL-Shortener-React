@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import MainContent from './components/MainContent';
 import Dashboard from './components/Dashboard';
+import '@material-tailwind/react/tailwind.css';
 
 const App = () => {
   return (

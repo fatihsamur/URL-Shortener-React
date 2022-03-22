@@ -1,15 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
+  const [token, setToken] = useState('');
+
+  const toggleDropDown = () => {
+    setIsHidden(!isHidden);
+  };
+
+  const logOut = () => {
+    console.log('logout');
+    const token = localStorage.getItem('token');
+    console.log(token);
+    axios
+      .post(
+        'http://127.0.0.1:8000/api/logout',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
+        setToken('');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    setToken(localStorage.getItem('token'));
     if (token) {
       setIsLoggedIn(true);
     }
-  }, []);
+  }, [isLoggedIn, token]);
 
   return (
     <header className="text-gray-800 body-font w-screen">
@@ -37,9 +69,39 @@ const Navbar = () => {
             <button className="ml-4 inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0">
               <Link to="/dashboard">Create </Link>
             </button>
-            <button className="ml-4 inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0">
-              <Link to="/dashboard"> Dropdown </Link>
+            <button
+              onClick={toggleDropDown}
+              className="ml-4 inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0"
+            >
+              Dropdown
             </button>
+            <div
+              id="dropdown"
+              className={`${
+                isHidden ? 'hidden' : ''
+              } absolute  z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700`}
+            >
+              <ul className="py-1" aria-labelledby="dropdownButton">
+                <li>
+                  <button className="block w-full py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                    Profile
+                  </button>
+                </li>
+                <li>
+                  <button className="block w-full py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                    Dashboard
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={logOut}
+                    className="block w-full py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  >
+                    Log Out
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         )}
       </div>
