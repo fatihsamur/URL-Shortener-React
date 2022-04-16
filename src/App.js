@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import MainContent from './components/MainContent';
 import Dashboard from './components/Dashboard';
 import '@material-tailwind/react/tailwind.css';
+import UserProfileDetails from './components/UserProfileDetails';
 
 const App = () => {
   return (
@@ -17,6 +18,11 @@ const App = () => {
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route
+          exact
+          path="/userProfileDetails"
+          element={<UserProfileDetails />}
+        />
       </Routes>
       <Footer />
     </div>

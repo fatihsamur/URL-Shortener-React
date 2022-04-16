@@ -2,12 +2,16 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setName, setEmail, setToken } from '../reducers/userReducer';
 
 const Login = () => {
   const [state, setState] = useState({
     email: '',
     password: '',
   });
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setState({
@@ -22,7 +26,9 @@ const Login = () => {
       .post('http://127.0.0.1:8000/api/login', { ...state })
       .then((res) => {
         console.log(res);
-        localStorage.setItem('token', res.data.token);
+        dispatch(setName(res.data.userName));
+        dispatch(setEmail(res.data.userEmail));
+        dispatch(setToken(res.data.token));
         navigate('/dashboard');
       })
       .catch((err) => {
