@@ -10,8 +10,7 @@ const Navbar = () => {
   const [isHidden, setIsHidden] = useState(true);
   const outSideClick = useRef(null);
 
-  const { name, email, token } = useSelector((state) => state.user);
-  console.log(name);
+  const { name, token } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
 
@@ -77,7 +76,7 @@ const Navbar = () => {
         ) : (
           <div>
             <button className="ml-4 inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0">
-              <Link to="/dashboard">Create </Link>
+              <Link to="/">Create </Link>
             </button>
             <button
               onClick={toggleDropDown}

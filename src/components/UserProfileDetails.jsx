@@ -1,10 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const UserProfileDetails = () => {
+  const { name, email } = useSelector((state) => state.user);
+
   return (
     <div className="grid place-items-center content-center h-screen ">
       <div className="w-1/2 sm:flex sm:justify-between items-center bg-indigo-700 px-4 py-5 border-b rounded-t sm:px-6">
-        <h3 className="text-lg leading-6 font-medium text-white">User Name</h3>
+        <h3 className="text-lg leading-6 font-medium text-white"> {name} </h3>
         <button className="bg-grey-light hover:bg-grey text-white font-bold py-2 px-4 rounded inline-flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +38,7 @@ const UserProfileDetails = () => {
                   </div>
                   <div className="ml-2 flex-shrink-0 flex">
                     <p className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
-                      haluk
+                      {name}
                     </p>
                   </div>
                 </div>
@@ -47,7 +50,7 @@ const UserProfileDetails = () => {
                   </div>
                   <div className="ml-2 flex-shrink-0 flex">
                     <p className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
-                      haluk@gmail.com
+                      {email}
                     </p>
                   </div>
                 </div>

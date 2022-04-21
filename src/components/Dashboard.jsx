@@ -1,13 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Pagination from '@material-tailwind/react/Pagination';
 import PaginationItem from '@material-tailwind/react/PaginationItem';
 import Icon from '@material-tailwind/react/Icon';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const Dashboard = () => {
+  const { name, token } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (token) {
+      axios
+        .get('http://127.0.0.1:8000/api/user-short-Links', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [token]);
+
   return (
     <div className="grid place-items-center content-center h-screen ">
-      <div className="w-3/4 bg-indigo-700 px-4 py-5 border-b rounded-t sm:px-6">
-        <h3 className="text-lg leading-6 font-medium text-white">Your Links</h3>
+      <div className="w-3/4 sm:flex sm:justify-between items-center bg-indigo-700 px-4 py-5 border-b rounded-t sm:px-6">
+        <h3 className="text-lg leading-6 font-medium text-white"> {name} </h3>
+        <button className="bg-grey-light hover:bg-grey text-white font-bold py-2 px-4 rounded inline-flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            fill="currentColor"
+            className="bi bi-pencil-square"
+            viewBox="0 0 16 16"
+          >
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+            <path
+              fillRule="evenodd"
+              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+            />
+          </svg>
+        </button>
       </div>
       <div className="w-3/4 bg-white shadow overflow-hidden sm:rounded-md">
         <ul className="divide-y text-gray-900">
