@@ -53,7 +53,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="text-gray-800 body-font w-screen">
+    <header className="fixed top-0 text-gray-800 body-font w-screen">
       <div className=" fixed top-0 w-screen flex flex-wrap p-5 bg-sky-800 flex-col md:flex-row items-center">
         <a
           href="/"

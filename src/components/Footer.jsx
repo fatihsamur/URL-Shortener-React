@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <div>
-      <footer className="text-gray-600 body-font flex">
+      <footer className="fixed mb-0 text-gray-600 body-font flex">
         <div className="container fixed bottom-0 px-5 py-8 mx-auto flex justify-center items-center sm:flex-row flex-col">
           <a
             className="flex title-font font-medium items-center  justify-center text-gray-900"

@@ -6,6 +6,7 @@ export const userSlice = createSlice({
     name: '',
     email: '',
     token: '',
+    userShortLinks: [],
   },
   reducers: {
     setName: (state, action) => {
@@ -17,15 +18,20 @@ export const userSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload;
     },
+    setUserShortLinks: (state, action) => {
+      state.userShortLinks = action.payload;
+    },
     setLogOut: (state) => {
       state.name = '';
       state.email = '';
       state.token = '';
+      state.userShortLinks = [];
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setName, setEmail, setToken, setLogOut } = userSlice.actions;
+export const { setName, setEmail, setToken, setUserShortLinks, setLogOut } =
+  userSlice.actions;
 
 export default userSlice.reducer;

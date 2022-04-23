@@ -29,7 +29,7 @@ const Login = () => {
         dispatch(setName(res.data.userName));
         dispatch(setEmail(res.data.userEmail));
         dispatch(setToken(res.data.token));
-        navigate('/dashboard');
+        navigate('/');
       })
       .catch((err) => {
         console.log(err);

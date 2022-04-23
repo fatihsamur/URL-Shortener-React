@@ -2,11 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import validator from 'validator';
+import { useSelector } from 'react-redux';
 
 const MainContent = () => {
   const [url, setUrl] = useState([]);
   const [error, setError] = useState('');
   const [shortLink, setShortLink] = useState('');
+  const { name, email, token } = useSelector((state) => state.user);
   const getUrl = (e) => {
     setShortLink('');
     const url = e.target.value;
@@ -23,7 +25,15 @@ const MainContent = () => {
     e.preventDefault();
     if (url) {
       axios
-        .post('http://127.0.0.1:8000/api/generate-short-url', { link: url })
+        .post(
+          'http://127.0.0.1:8000/api/generate-short-url',
+          { link: url },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((res) => {
           setShortLink(res.data.code);
         })
