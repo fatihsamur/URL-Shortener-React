@@ -5,7 +5,7 @@ const UserProfileDetails = () => {
   const { name, email } = useSelector((state) => state.user);
 
   return (
-    <div className="grid place-items-center content-center h-screen ">
+    <section className="flex-1 overflow-y-auto grid place-items-center content-center">
       <div className="w-1/2 sm:flex sm:justify-between items-center bg-indigo-700 px-4 py-5 border-b rounded-t sm:px-6">
         <h3 className="text-lg leading-6 font-medium text-white"> {name} </h3>
         <button className="bg-grey-light hover:bg-grey text-white font-bold py-2 px-4 rounded inline-flex items-center">
@@ -59,7 +59,7 @@ const UserProfileDetails = () => {
           </li>
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

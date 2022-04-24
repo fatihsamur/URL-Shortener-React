@@ -11,7 +11,7 @@ import UserProfileDetails from './components/UserProfileDetails';
 
 const App = () => {
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <Navbar />
       <Routes>
         <Route exact path="/" element={<MainContent />} />

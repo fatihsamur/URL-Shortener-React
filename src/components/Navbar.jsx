@@ -53,73 +53,71 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-0 text-gray-800 body-font w-screen">
-      <div className=" fixed top-0 w-screen flex flex-wrap p-5 bg-sky-800 flex-col md:flex-row items-center">
-        <a
-          href="/"
-          className="flex title-font font-medium items-center text-white mb-4 md:mb-0"
-        >
-          <span className="ml-3 text-xl">Shortener</span>
-        </a>
-        <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center"></nav>
+    <heaser className="fixed top-0 w-screen flex flex-wrap p-5 bg-sky-800 body-font text-gray-800 flex-col md:flex-row items-center">
+      <a
+        href="/"
+        className="flex title-font font-medium items-center text-white mb-4 md:mb-0"
+      >
+        <span className="ml-3 text-xl">Shortener</span>
+      </a>
+      <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center"></nav>
 
-        {!token ? (
-          <div>
-            <button className="inline-flex items-center text-white  border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0">
-              <Link to="/login">Sign In</Link>
-            </button>
+      {!token ? (
+        <div>
+          <button className="inline-flex items-center text-white  border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0">
+            <Link to="/login">Sign In</Link>
+          </button>
 
-            <button className="ml-4 inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0">
-              <Link to="/register">Sign Up</Link>
-            </button>
+          <button className="ml-4 inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0">
+            <Link to="/register">Sign Up</Link>
+          </button>
+        </div>
+      ) : (
+        <div>
+          <button className="ml-4 inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0">
+            <Link to="/">Create </Link>
+          </button>
+          <button
+            onClick={toggleDropDown}
+            className="ml-4 inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0"
+          >
+            {name}
+          </button>
+          <div
+            id="dropdown"
+            ref={outSideClick}
+            className={`${
+              isHidden ? 'hidden' : ''
+            } absolute  z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700`}
+          >
+            <ul className="py-1" aria-labelledby="dropdownButton">
+              <li>
+                <button className="block w-full py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                  <Link className="block w-full" to="/dashboard">
+                    Dashboard
+                  </Link>
+                </button>
+              </li>
+              <li>
+                <button className="block w-full py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                  <Link className="block w-full" to="/userProfileDetails">
+                    Profile
+                  </Link>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={logOut}
+                  className="block w-full py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Log Out
+                </button>
+              </li>
+            </ul>
           </div>
-        ) : (
-          <div>
-            <button className="ml-4 inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0">
-              <Link to="/">Create </Link>
-            </button>
-            <button
-              onClick={toggleDropDown}
-              className="ml-4 inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0"
-            >
-              {name}
-            </button>
-            <div
-              id="dropdown"
-              ref={outSideClick}
-              className={`${
-                isHidden ? 'hidden' : ''
-              } absolute  z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700`}
-            >
-              <ul className="py-1" aria-labelledby="dropdownButton">
-                <li>
-                  <button className="block w-full py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                    <Link className="block w-full" to="/dashboard">
-                      Dashboard
-                    </Link>
-                  </button>
-                </li>
-                <li>
-                  <button className="block w-full py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                    <Link className="block w-full" to="/userProfileDetails">
-                      Profile
-                    </Link>
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={logOut}
-                    className="block w-full py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Log Out
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        )}
-      </div>
-    </header>
+        </div>
+      )}
+    </heaser>
   );
 };
 

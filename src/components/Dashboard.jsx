@@ -5,12 +5,14 @@ import Icon from '@material-tailwind/react/Icon';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setUserShortLinks } from '../reducers/userReducer';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const { name, token, userShortLinks } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const shortLinks = userShortLinks.shortLinks;
   console.log(shortLinks);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
@@ -26,12 +28,14 @@ const Dashboard = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else {
+      navigate('/');
     }
-  }, [token, dispatch]);
+  }, [token, dispatch, navigate]);
 
   return (
-    <div className="flex flex-col place-items-center content-center mt-24 mb-24">
-      <div className="w-3/4 sm:flex sm:justify-between items-center bg-indigo-700 px-4 py-5 border-b rounded-t sm:px-6">
+    <div className="flex flex-col flex-1 overflow-hidden place-items-center content-center mt-36 mb-36">
+      <div className="w-3/4 sm:flex  sm:justify-between items-center bg-indigo-700 px-4 py-5 border-b rounded-t sm:px-6">
         <h3 className="text-lg leading-6 font-medium text-white"> {name} </h3>
         <button className="bg-grey-light hover:bg-grey text-white font-bold py-2 px-4 rounded inline-flex items-center">
           <svg
@@ -50,7 +54,7 @@ const Dashboard = () => {
           </svg>
         </button>
       </div>
-      <div className="w-3/4 bg-white shadow sm:rounded-md">
+      <div className="w-3/4 bg-white overflow-y-auto shadow sm:rounded-md">
         <ul className="divide-y text-gray-900 overflow-y-scroll">
           {shortLinks.map((shortLink) => (
             <li key={shortLink.id}>
