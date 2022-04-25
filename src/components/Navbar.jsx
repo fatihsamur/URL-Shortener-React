@@ -45,7 +45,7 @@ const Navbar = () => {
       .then((res) => {
         console.log(res);
         dispatch(setLogOut());
-        navigate('/');
+        navigate('/login', { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -53,7 +53,7 @@ const Navbar = () => {
   };
 
   return (
-    <heaser className="fixed top-0 w-screen flex flex-wrap p-5 bg-sky-800 body-font text-gray-800 flex-col md:flex-row items-center">
+    <header className="fixed top-0 w-screen flex flex-wrap p-5 bg-sky-800 body-font text-gray-800 flex-col md:flex-row items-center">
       <a
         href="/"
         className="flex title-font font-medium items-center text-white mb-4 md:mb-0"
@@ -117,7 +117,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-    </heaser>
+    </header>
   );
 };
 
